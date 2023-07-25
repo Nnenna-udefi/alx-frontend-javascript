@@ -18,20 +18,18 @@ module.exports = {
   },
   plugins: ['jest'],
   rules: {
-    'no-console': 0,
-    'no-shadow': 'off', // Corrected value to disable the "no-shadow" rule
+    'no-console': 'off',
+    'no-shadow': 'off',
     'no-restricted-syntax': [
       'error',
       'LabeledStatement',
       'WithStatement',
     ],
   },
-  overrides: [
+  overrides:[
     {
       files: ['*.js'],
       excludedFiles: 'babel.config.js',
-    },
-  ],
+    }
+  ]
 };
-
-  
