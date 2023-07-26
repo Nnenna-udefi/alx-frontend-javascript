@@ -1,27 +1,31 @@
-// Handle multiple promises
 import signUpUser from './4-user-promise';
 import uploadPhoto from './5-photo-reject';
 
-async function handleProfileSignup(firstName, lastName, fileName) {
+export default async function handleProfileSignup(
+  firstName,
+  lastName,
+  fileName,
+) {
+  const res = [];
   try {
-    const userPromise = signUpUser(firstName, lastName);
-    const photoPromise = uploadPhoto(fileName);
-    const [user, photo] = await Promise.allSettled([userPromise, photoPromise]);
-
-    return [
-      {
-        status: user.status,
-        value: user.status === 'fulfilled' ? user.value : user.reason,
-      },
-      {
-        status: photo.status,
-        value: photo.status === 'fulfilled' ? photo.value : photo.reason,
-      },
-    ];
-  } catch (error) {
-    console.error('Error:', error);
-    return [];
+    const user = await signUpUser(firstName, lastName);
+    res.push({ status: 'fulfilled', value: user });
+  } catch (err) {
+    res.push({
+      status: 'rejected',
+      value: err.toString(),
+    });
   }
-}
 
-export default handleProfileSignup;
+  try {
+    const upload = await uploadPhoto(fileName);
+    res.push({ status: 'fulfilled', value: upload });
+  } catch (err) {
+    res.push({
+      status: 'rejected',
+      value: err.toString(),
+    });
+  }
+
+  return res;
+}
