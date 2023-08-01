@@ -6,7 +6,7 @@ const updateUniqueItems = (newMap) => {
     if (value === 1) {
       newMap.set(key, 100);
     }
-  };
+  }
   return newMap;
 };
 
