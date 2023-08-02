@@ -5,7 +5,7 @@ export { weakMap };
 export const queryAPI = (endpoint) => {
   if (weakMap.has(endpoint)) {
     let queryCount = weakMap.get(endpoint) || 0;
-    if (queryCount >= 5) {
+    if (queryCount >= 4) {
       throw new Error('Endpoint load is high');
     }
 
