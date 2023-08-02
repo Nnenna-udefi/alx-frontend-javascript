@@ -59,6 +59,16 @@ function executeWork(employee: TeacherInterface | DirectorInterface){
       }
 }
 
-console.log(createEmployee(200));
-console.log(createEmployee(1000));
-console.log(createEmployee('#500'));
+// string literal type named Subjects
+type Subjects = 'Math' | 'History';
+
+function teachClass(todayClass: Subjects) {
+    if (todayClass === 'Math') return 'Teaching Math';
+    else if (todayClass === 'History') return 'Teaching History';
+}
+
+executeWork(createEmployee(200));
+executeWork(createEmployee(1000));
+executeWork(createEmployee('#500'));
+console.log(teachClass('Math'));
+console.log(teachClass('History'));

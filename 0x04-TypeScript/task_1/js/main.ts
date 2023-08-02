@@ -15,7 +15,7 @@ interface printTeacherFunction {
     (firstName: string, lastName: string): string;  
   }
 
-const printTeacher: printTeacherFunction = (firstName: string, lastName: string) => `${firstName.charAt(0)}.${lastName}`;
+const printTeacher: printTeacherFunction = (firstName: string, lastName: string) => `${firstName.charAt(0)}. ${lastName}`;
 
 interface classInterface {
     workOnHomework(): string;
@@ -40,7 +40,8 @@ class StudentClass implements classInterface {
     }
 }
    
-    
+
+console.log(printTeacher('Nnenna', 'Udefi'));
 const student = new StudentClass("Nnenna", "Udefi");
 console.log(student.displayName())
 console.log(student.workOnHomework())
